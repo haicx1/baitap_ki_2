@@ -147,7 +147,7 @@ class ManageStudent:
                 if choice == 1:
                     student = Student()
                     student.name = input('Enter new name:')
-                    student.grade = input('Enter new grade:')
+                    student.grade = int(input('Enter new grade:'))
                     self.llist.set_value(temp.id, student)
                     for i in range(self.llist.length):
                         student2 = self.llist.get(i)
@@ -163,4 +163,5 @@ class ManageStudent:
 
 
 manage = ManageStudent()
+manage.create_student()
 manage.update_student()
