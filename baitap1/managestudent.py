@@ -10,7 +10,7 @@ class LinkedList:
     def print_list(self):
         temp = self.head
         while temp is not None:
-            print(temp.name)
+            temp.display()
             temp = temp.next
 
     def append(self, student=Student()):
@@ -72,8 +72,9 @@ class LinkedList:
 
     def set_value(self, index, student=Student()):
         temp = self.get(index)
-        if temp:
-            temp = student
+        if temp is not None:
+            temp.name = student.name
+            temp.grade = student.grade
             return True
         return False
 
@@ -148,7 +149,9 @@ class ManageStudent:
                     student = Student()
                     student.name = input('Enter new name:')
                     student.grade = int(input('Enter new grade:'))
-                    self.llist.set_value(temp.id, student)
+                    student.id_setter(temp.id)
+                    index = student.id - 3
+                    self.llist.set_value(index, student)
                     for i in range(self.llist.length):
                         student2 = self.llist.get(i)
                         fh.write(str(student2.id))
@@ -157,11 +160,10 @@ class ManageStudent:
                         fh.write('\n')
                         fh.write(str(student2.grade))
                         fh.write('\n')
+                    fh.close()
+
                 if choice == 2:
-                    self.llist.remove(temp.id)
+                    self.llist.remove(temp.id - 3)
                     print('Delete Success')
 
 
-manage = ManageStudent()
-manage.create_student()
-manage.update_student()

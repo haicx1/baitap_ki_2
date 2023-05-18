@@ -29,6 +29,8 @@ class Student:
         else:
             raise ValueError('Not grade')
 
+    def id_setter(self, value):
+        self.id = value
     def display(self):
         print('ID:', self.id)
         print('Name:', self.name)
