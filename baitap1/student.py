@@ -28,3 +28,8 @@ class Student:
             self._grade = value
         else:
             raise ValueError('Not grade')
+
+    def display(self):
+        print('ID:', self.id)
+        print('Name:', self.name)
+        print('Grade:', self.grade)

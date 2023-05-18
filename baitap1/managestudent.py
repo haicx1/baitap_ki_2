@@ -70,10 +70,10 @@ class LinkedList:
             temp = temp.next
         return temp
 
-    def set_value(self, index, value):
+    def set_value(self, index, student=Student()):
         temp = self.get(index)
         if temp:
-            temp.value = value
+            temp = student
             return True
         return False
 
@@ -113,12 +113,54 @@ class ManageStudent:
                     continue
             for i in range(0, self.llist.length):
                 student2 = self.llist.get(i)
-                fh.write('ID:',str(student2.id))
-                fh.write('Ten:', student2.name)
+                fh.write(str(student2.id))
                 fh.write('\n')
-                fh.write('Diem:', str(student2.grade))
+                fh.write(student2.name)
+                fh.write('\n')
+                fh.write(str(student2.grade))
                 fh.write('\n')
             fh.close()
 
+    def search_student(self):
+        search = False
+        student_id = int(input('Nhap ma SV:'))
+        for i in range(self.llist.length):
+            temp = self.llist.get(i)
+            if temp.id == student_id:
+                temp.display()
+                search = True
+                return temp
+                break
+            else:
+                return search
+        if not search:
+            print('Student not found.')
+
+    def update_student(self):
+        filename = 'student'
+        temp = self.search_student()
+        if temp == False:
+            return print('Student not found')
+        else:
+            with open(filename, 'w') as fh:
+                choice = int(input('Enter choice(1/2)?'))
+                if choice == 1:
+                    student = Student()
+                    student.name = input('Enter new name:')
+                    student.grade = input('Enter new grade:')
+                    self.llist.set_value(temp.id, student)
+                    for i in range(self.llist.length):
+                        student2 = self.llist.get(i)
+                        fh.write(str(student2.id))
+                        fh.write('\n')
+                        fh.write(student2.name)
+                        fh.write('\n')
+                        fh.write(str(student2.grade))
+                        fh.write('\n')
+                if choice == 2:
+                    self.llist.remove(temp.id)
+                    print('Delete Success')
+
+
 manage = ManageStudent()
-manage.create_student()
+manage.update_student()
