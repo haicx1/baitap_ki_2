@@ -64,6 +64,7 @@ class LinkedList:
             self.tail = None
         return temp
 
+
     def get(self, index):
         if index < 0 or index >= self.length:
             return None
@@ -117,5 +118,6 @@ manage.insert_buyer(n1)
 while True:
     temp = manage.buy_ticket(amount)
     if temp == False:
+        print('Het ve')
         break
 manage.llist.print_list()

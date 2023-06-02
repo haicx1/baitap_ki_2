@@ -1,0 +1,2 @@
+K0001    Alex    H0001    Ca_Hoi    100000    9
+K0002    John    H0002    Thit_Bo    300000    3
